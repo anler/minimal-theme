@@ -28,11 +28,15 @@
 ;;; Code:
 (deftheme minimal-light "minimal light theme.")
 
-(let ((foreground "black")
+(let* ((class '((class color) (min-colors 89)))
+      (foreground "black")
       (background "white")
       (dark "grey80")
+      (dark-2 "grey95")
       (light "gray20")
-      (light-2 "light slate gray"))
+      (notice "light slate gray")
+      (warning "gold")
+      (code-block `(:foreground ,foreground :background ,dark-2)))
   (custom-theme-set-faces
    'minimal-light
 
@@ -46,8 +50,8 @@
    `(minibuffer-prompt ((t (:foreground ,foreground :weight bold))))
 
    `(highlight ((t (:foreground ,background :background ,light))))
-   `(region ((t (:foreground ,background :background "light gray"))))
-   `(secondary-selection ((t (:background ,light-2))))
+   `(region ((t (:foreground ,background :background ,dark))))
+   `(secondary-selection ((t (:background ,notice))))
 
    ;; whitespace
    `(trailing-whitespace ((t (:background "red"))))
@@ -66,12 +70,12 @@
    `(font-lock-type-face ((t (:foreground ,foreground :slant italic))))
    `(font-lock-function-name-face ((t (:foreground ,foreground :slant italic))))
    `(font-lock-variable-name-face ((t (:foreground ,foreground :weight bold))))
-   `(font-lock-warning-face ((t (:foreground "yellow"))))
+   `(font-lock-warning-face ((t (:foreground ,warning))))
 
    '(button ((t (:inherit link))))
 
    `(link ((t (:foreground ,light :underline t))))
-   `(link-visited ((t (:foreground ,light-2 :underline t))))
+   `(link-visited ((t (:foreground ,notice :underline t))))
 
    `(fringe ((t (:background ,background :foreground ,foreground))))
 
@@ -88,42 +92,25 @@
      ((t (:box (:line-width -1 :color nil :style released-button)
                :foreground ,background :background ,dark))))
 
-   `(isearch ((t (:foreground ,background :background ,light))))
-   `(isearch-fail ((((class color) (min-colors 88) (background ,light))
-                    (:background "RosyBrown1"))
-                   (((class color) (min-colors 88) (background ,dark))
-                    (:background "red4"))
-                   (((class color) (min-colors 16)) (:background "red"))
-                   (((class color) (min-colors 8)) (:background "red"))
-                   (((class color grayscale)) (:foreground ,light))
-                   (t (:inverse-video t))))
    `(lazy-highlight ((t (:foreground ,background :background ,light))))
-   `(match ((((class color) (min-colors 88) (background ,light))
-             (:background "yellow1"))
-            (((class color) (min-colors 88) (background ,dark))
-             (:background "RoyalBlue3"))
-            (((class color) (min-colors 8) (background ,light))
-             (:foreground ,background :background "yellow"))
-            (((class color) (min-colors 8) (background ,dark))
-             (:foreground ,foreground :background "blue"))
-            (((type tty) (class mono)) (:inverse-video t))
-            (t (:background ,dark))))
-
    '(next-error ((t (:inherit (region)))))
    '(query-replace ((t (:inherit (isearch)))))
 
-   `(org-level-1 ((t (:bold t :foreground ,light-2 :height 1.5))))
-   `(org-level-2 ((t (:bold t :foreground ,light-2 :height 1.2))))
-   `(org-level-3 ((t (:bold t :foreground ,light-2 :height 1.0))))
-   `(org-level-4 ((t (:bold t :foreground ,light-2 :height 1.0))))
+   `(org-level-1 ((t (:bold t :foreground ,notice :height 1.5))))
+   `(org-level-2 ((t (:bold t :foreground ,notice :height 1.2))))
+   `(org-level-3 ((t (:bold t :foreground ,notice :height 1.0))))
+   `(org-level-4 ((t (:bold t :foreground ,notice :height 1.0))))
    `(org-link ((t (:underline t))))
    `(org-todo ((t (:bold t :foreground "red"))))
    `(org-done ((t (:bold t :foreground "green"))))
+   `(org-block-background ((,class (:background ,dark-2))))
+   `(org-block-begin-line ((,class (:inherit code-block :overline ,dark :slant italic))))
+   `(org-block-end-line ((,class (:inherit code-block :underline ,dark :slant italic))))
 
    ;; ido
-   `(ido-first-match ((t (:underline t))))
-   `(ido-only-match ((t (:underline t))))
-   `(ido-subdir ((t (:weight bold))))))
+   `(ido-first-match ((t (:foreground ,foreground :underline t))))
+   `(ido-only-match ((t (:foreground ,foreground :underline t :weight bold))))
+   `(ido-subdir ((t (:foreground ,foreground :weight bold))))))
 
 ;;;###autoload
 (when (and (boundp 'custom-theme-load-path) load-file-name)

@@ -33,6 +33,7 @@
       (background "black")
       (dark "grey20")
       (dark-2 "grey5")
+      (dark-3 "grey8")
       (light "light gray")
       (notice "light slate gray")
       (warning "gold")
@@ -42,16 +43,25 @@
 
    ;; basic stuff
    `(default ((t (:background ,background :foreground ,foreground))))
-   `(cursor ((t (:background ,light))))
+   `(cursor ((t (:background ,warning :inverse-video t))))
+   `(shadow ((t (:foreground ,light))))
    `(fixed-pitch ((t (:family "Monospace"))))
    `(variable-pitch ((t (:family "Sans Serif"))))
    `(escape-glyph ((t (:foreground ,light))))
 
+   `(linum ((t (:background ,background :foreground ,dark))))
+   `(vertical-border ((t (:foreground ,dark))))
+
    `(minibuffer-prompt ((t (:foreground ,foreground :weight bold))))
 
    `(highlight ((t (:foreground ,background :background ,light))))
-   `(region ((t (:foreground ,background :background "light gray"))))
-   `(secondary-selection ((t (:background ,notice))))
+   `(region ((t (:foreground ,background :background ,dark))))
+   `(secondary-selection ((t (:background ,dark-3))))
+
+   `(fci-rule-color ,dark)
+
+   ;; magit
+   `(magit-diff-use-overlays nil)
 
    ;; whitespace
    `(trailing-whitespace ((t (:background "red"))))
@@ -89,8 +99,7 @@
        (:box (:line-width 2 :color ,dark :style released-button)))
       (t (:inherit (highlight)))))
    `(mode-line-inactive
-     ((t (:box (:line-width -1 :color nil :style released-button)
-               :foreground ,background :background ,dark))))
+     ((t (:box (:line-width -1 :color ,background :style nil) :foreground ,dark :background nil))))
 
    `(lazy-highlight ((t (:foreground ,background :background ,light))))
 

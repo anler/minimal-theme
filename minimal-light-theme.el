@@ -115,6 +115,13 @@
       ;; hl-line-mode
      `(hl-line ((,class (:background ,hl-background))))
      `(hl-line-face ((,class (:background ,hl-face-background))))
+     
+      ;; highlight-stages-mode
+     `(highlight-stages-negative-level-face ((,class (:foreground ,failure))))
+     `(highlight-stages-level-1-face ((,class (:background ,org-background))))
+     `(highlight-stages-level-2-face ((,class (:background ,region))))
+     `(highlight-stages-level-3-face ((,class (:background ,region))))
+     `(highlight-stages-higher-level-face ((,class (:background ,region))))
 
      ;; org-mode
      `(org-level-1 ((,class (:foreground ,foreground :height 1.6))))

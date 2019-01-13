@@ -12,3 +12,7 @@ A dark/light minimalistic theme for Emacs 24.
 ### Dark ###
 
 ![Dark theme](dark.png)
+
+### Black ###
+
+![Black theme](black.png)
